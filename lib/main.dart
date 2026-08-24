@@ -7,7 +7,18 @@ void main() {
 }
 
 /// MaterialApp (home)
-/// Scaffold ( body)
+/// Scaffold ( appbar , body)
+/// Container()
+/// SizedBox()
+/// Column()
+/// Row()
+/// CircleAvatar()
+/// Icon(Icons.)
+/// NetworkImage
+/// Divider()
+/// Padding()
+/// Text()
+
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
