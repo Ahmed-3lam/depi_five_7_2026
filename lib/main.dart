@@ -19,12 +19,11 @@ void main() {
 /// Padding()
 /// Text()
 
-
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(home: MyHome());
+    return MaterialApp(debugShowCheckedModeBanner: false, home: MyHome());
   }
 }
