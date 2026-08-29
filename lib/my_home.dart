@@ -9,14 +9,20 @@ class MyHome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(backgroundColor: Colors.amber),
-      body: Container(color: Colors.red),
-      bottomNavigationBar: Container(height: 200, color: Colors.blue),
-      floatingActionButton: FloatingActionButton(
-        onPressed: null,
-        child: Icon(Icons.add),
+      appBar: AppBar(
+        backgroundColor: Colors.blue,
+        leading: Icon(Icons.menu, color: Colors.white),
+        title: Text("My AppBar", style: TextStyle(color: Colors.white)),
+        centerTitle: true,
+        actions: [
+          Icon(Icons.search, color: Colors.white),
+          SizedBox(width: 20),
+          Icon(Icons.edit, color: Colors.white),
+          SizedBox(width: 20),
+        ],
+     
+     
       ),
-   
     );
   }
 }
