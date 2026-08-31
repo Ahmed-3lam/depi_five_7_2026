@@ -4,7 +4,7 @@ class ChatModel {
   String? message;
   String? time;
   String? image;
-  String? messageType;
+  ChatType? messageType;
   ChatModel({
     this.id,
     this.name,
@@ -20,7 +20,21 @@ class ChatModel {
     message = json["message"];
     time = json["time"];
     image = json["image"];
-    messageType = json["message_type"];
+    messageType = getChatType(json["message_type"]);
+  }
+}
+
+enum ChatType { text, video, gif }
+
+ChatType getChatType(String chatType) {
+  switch (chatType) {
+    case "text":
+      return ChatType.text;
+    case "video":
+      return ChatType.video;
+
+    default:
+      return ChatType.gif;
   }
 }
 

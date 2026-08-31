@@ -1,31 +1,19 @@
-import 'package:depi_five/const.dart';
+import 'package:depi_five/whatsApp/const/const.dart';
 import 'package:depi_five/whatsApp/api_list.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../models/chat_model.dart';
-import 'whatsapp_text_styles.dart';
+import '../const/whatsapp_text_styles.dart';
 
 class WhatsappChatsScreen extends StatelessWidget {
   const WhatsappChatsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    List<ChatModel> chats = apiChats.map((e)=>ChatModel.fromJson(e)).toList();
+    List<ChatModel> chats = apiChats.map((e) => ChatModel.fromJson(e)).toList();
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.green,
-        title: Text("WhatsApp", style: TextStyle(color: Colors.white)),
-        centerTitle: false,
-        actions: [
-          Icon(CupertinoIcons.camera, color: Colors.white),
-          SizedBox(width: 20),
-          Icon(Icons.search, color: Colors.white),
-          SizedBox(width: 20),
-          Icon(Icons.more_vert, color: Colors.white),
-          SizedBox(width: 20),
-        ],
-      ),
+      appBar: _appBar(),
       floatingActionButton: FloatingActionButton(
         onPressed: null,
         backgroundColor: Colors.green,
@@ -39,12 +27,12 @@ class WhatsappChatsScreen extends StatelessWidget {
           children: [
             _customChat(icon: Icons.lock, title: "Locked Chats"),
             _customChat(icon: Icons.archive, title: "Archive Chats", count: 6),
-
+            // for(int i = 0 ; i<chats.length ;i++)
             Expanded(
               child: ListView.separated(
-                itemCount: 40,
+                itemCount: chats.length,
                 separatorBuilder: (context, index) => Divider(),
-                itemBuilder: (context, index) => _myChat(),
+                itemBuilder: (context, i) => _myChat(chats[i]),
               ),
             ),
           ],
@@ -53,23 +41,63 @@ class WhatsappChatsScreen extends StatelessWidget {
     );
   }
 
-  Widget _myChat() {
+  AppBar _appBar() {
+    return AppBar(
+      backgroundColor: Colors.green,
+      title: Text("WhatsApp", style: TextStyle(color: Colors.white)),
+      centerTitle: false,
+      actions: [
+        Icon(CupertinoIcons.camera, color: Colors.white),
+        SizedBox(width: 20),
+        Icon(Icons.search, color: Colors.white),
+        SizedBox(width: 20),
+        Icon(Icons.more_vert, color: Colors.white),
+        SizedBox(width: 20),
+      ],
+    );
+  }
+
+  Widget _myChat(ChatModel chat) {
     return Row(
       spacing: 10,
       crossAxisAlignment: .start,
       children: [
-        CircleAvatar(radius: 25, backgroundImage: NetworkImage(image1)),
+        CircleAvatar(
+          radius: 25,
+          backgroundImage: NetworkImage(chat.image ?? ""),
+        ),
         Column(
           crossAxisAlignment: .start,
           children: [
-            Text("Mohamed", style: WhatsappTextStyles.titleTextStyle),
-            Text("Hello from flutter", style: WhatsappTextStyles.msgTextStyle),
+            Text(chat.name ?? "", style: WhatsappTextStyles.titleTextStyle),
+
+            _messageBuilder(chat),
           ],
         ),
         Spacer(),
-        Text("11:55 PM", style: WhatsappTextStyles.msgTextStyle),
+        Text(chat.time ?? "", style: WhatsappTextStyles.msgTextStyle),
       ],
     );
+  }
+
+  Widget _messageBuilder(ChatModel chat) {
+    if (chat.messageType == ChatType.text) {
+      return Text(chat.message ?? "", style: WhatsappTextStyles.msgTextStyle);
+    } else if (chat.messageType == ChatType.video) {
+      return Row(
+        children: [
+          Icon(CupertinoIcons.video_camera),
+          Text("Video", style: WhatsappTextStyles.msgTextStyle),
+        ],
+      );
+    } else {
+      return Row(
+        children: [
+          Icon(Icons.gif),
+          Text("Gif", style: WhatsappTextStyles.msgTextStyle),
+        ],
+      );
+    }
   }
 
   Widget _customChat({

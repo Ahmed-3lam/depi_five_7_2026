@@ -1,11 +1,12 @@
+import 'package:depi_five/whatsApp/const/const.dart';
+
 List<Map<String, dynamic>> apiChats = [
   {
     "id": 1,
     "name": "Mohamed",
     "message": "Hello from flutter",
     "time": "11:55 PM",
-    "image":
-        "https://images.unsplash.com/photo-1682685790910-1f3e1b8c5d4?ixlib=rb-4.0",
+    "image": image1,
     "message_type": "text",
   },
 
@@ -15,7 +16,7 @@ List<Map<String, dynamic>> apiChats = [
     "message": null,
     "time": "09:55 PM",
     "image":
-        "https://images.unsplash.com/photo-1682685790910-1f3e1b8c5d4?ixlib=rb-4.0",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSus2m-TPom908p53rz4wbfVmcLzn8Ryht9f8XOKcU9Hw&s=10",
     "message_type": "video",
   },
 
@@ -24,8 +25,7 @@ List<Map<String, dynamic>> apiChats = [
     "name": "Ali",
     "message": null,
     "time": "10:55 PM",
-    "image":
-        "https://images.unsplash.com/photo-1682685790910-1f3e1b8c5d4?ixlib=rb-4.0",
+    "image": image1,
     "message_type": "gif",
   },
 
@@ -34,8 +34,7 @@ List<Map<String, dynamic>> apiChats = [
     "name": "Omar",
     "message": null,
     "time": "11:55 PM",
-    "image":
-        "https://images.unsplash.com/photo-1682685790910-1f3e1b8c5d4?ixlib=rb-4.0",
+    "image": image1,
     "message_type": "gif",
   },
 
@@ -44,17 +43,15 @@ List<Map<String, dynamic>> apiChats = [
     "name": "Youssef",
     "message": null,
     "time": "11:55 PM",
-    "image":
-        "https://images.unsplash.com/photo-1682685790910-1f3e1b8c5d4?ixlib=rb-4.0",
+    "image": image1,
     "message_type": "text",
   },
-  {
+   {
     "id": 1,
     "name": "Mohamed",
     "message": "Hello from flutter",
     "time": "11:55 PM",
-    "image":
-        "https://images.unsplash.com/photo-1682685790910-1f3e1b8c5d4?ixlib=rb-4.0",
+    "image": image1,
     "message_type": "text",
   },
 
@@ -64,7 +61,7 @@ List<Map<String, dynamic>> apiChats = [
     "message": null,
     "time": "09:55 PM",
     "image":
-        "https://images.unsplash.com/photo-1682685790910-1f3e1b8c5d4?ixlib=rb-4.0",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSus2m-TPom908p53rz4wbfVmcLzn8Ryht9f8XOKcU9Hw&s=10",
     "message_type": "video",
   },
 
@@ -73,8 +70,7 @@ List<Map<String, dynamic>> apiChats = [
     "name": "Ali",
     "message": null,
     "time": "10:55 PM",
-    "image":
-        "https://images.unsplash.com/photo-1682685790910-1f3e1b8c5d4?ixlib=rb-4.0",
+    "image": image1,
     "message_type": "gif",
   },
 
@@ -83,8 +79,7 @@ List<Map<String, dynamic>> apiChats = [
     "name": "Omar",
     "message": null,
     "time": "11:55 PM",
-    "image":
-        "https://images.unsplash.com/photo-1682685790910-1f3e1b8c5d4?ixlib=rb-4.0",
+    "image": image1,
     "message_type": "gif",
   },
 
@@ -93,8 +88,60 @@ List<Map<String, dynamic>> apiChats = [
     "name": "Youssef",
     "message": null,
     "time": "11:55 PM",
+    "image": image1,
+    "message_type": "text",
+  },
+   {
+    "id": 5,
+    "name": "Youssef",
+    "message": null,
+    "time": "11:55 PM",
+    "image": image1,
+    "message_type": "text",
+  },
+   {
+    "id": 1,
+    "name": "Mohamed",
+    "message": "Hello from flutter",
+    "time": "11:55 PM",
+    "image": image1,
+    "message_type": "text",
+  },
+
+  {
+    "id": 2,
+    "name": "Ahmed",
+    "message": null,
+    "time": "09:55 PM",
     "image":
-        "https://images.unsplash.com/photo-1682685790910-1f3e1b8c5d4?ixlib=rb-4.0",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSus2m-TPom908p53rz4wbfVmcLzn8Ryht9f8XOKcU9Hw&s=10",
+    "message_type": "video",
+  },
+
+  {
+    "id": 3,
+    "name": "Ali",
+    "message": null,
+    "time": "10:55 PM",
+    "image": image1,
+    "message_type": "gif",
+  },
+
+  {
+    "id": 4,
+    "name": "Omar",
+    "message": null,
+    "time": "11:55 PM",
+    "image": image1,
+    "message_type": "gif",
+  },
+
+  {
+    "id": 5,
+    "name": "Youssef",
+    "message": null,
+    "time": "11:55 PM",
+    "image": image1,
     "message_type": "text",
   },
 ];
