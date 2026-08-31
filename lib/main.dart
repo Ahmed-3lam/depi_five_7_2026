@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'whatsApp/whatsapp_chats_screen.dart';
+import 'whatsApp/ui/whatsapp_chats_screen.dart';
 
 
 

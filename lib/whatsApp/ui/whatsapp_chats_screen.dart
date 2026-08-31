@@ -1,7 +1,9 @@
 import 'package:depi_five/const.dart';
+import 'package:depi_five/whatsApp/api_list.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../models/chat_model.dart';
 import 'whatsapp_text_styles.dart';
 
 class WhatsappChatsScreen extends StatelessWidget {
@@ -9,6 +11,7 @@ class WhatsappChatsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    List<ChatModel> chats = apiChats.map((e)=>ChatModel.fromJson(e)).toList();
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.green,
