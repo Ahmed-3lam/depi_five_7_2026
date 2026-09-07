@@ -1,4 +1,4 @@
-import 'package:depi_five/whatsApp/const/const.dart';
+import 'package:depi_five/const.dart';
 
 List<Map<String, dynamic>> apiChats = [
   {

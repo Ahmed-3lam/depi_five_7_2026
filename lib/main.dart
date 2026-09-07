@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import 'whatsApp/ui/whatsapp_chats_screen.dart';
+import 'messanger/messanger_page.dart';
 
 
 
@@ -15,7 +14,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      home: WhatsappChatsScreen(),
+      home:MessangerPage(),
     );
   }
 }
