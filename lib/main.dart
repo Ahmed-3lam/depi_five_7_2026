@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'messanger/messanger_page.dart';
+
+import 'bmi_calculator/bmi_calc_page.dart';
+import 'counter_screen.dart';
 
 
 
@@ -13,8 +15,8 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home:MessangerPage(),
+    return  MaterialApp(
+      home:BmiCalcPage()
     );
   }
 }
