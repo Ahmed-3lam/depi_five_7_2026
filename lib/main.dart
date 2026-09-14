@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/route_manager.dart';
 
-import 'bmi_calculator/bmi_calc_page.dart';
-import 'counter_screen.dart';
-import 'login/login_page.dart';
+import 'quiz_app/view/quiz_home_page.dart';
+
+
 
 void main() {
   runApp(const MyApp());
@@ -13,6 +14,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(home: LoginPage());
+    return GetMaterialApp(home: QuizHomePage());
   }
 }
