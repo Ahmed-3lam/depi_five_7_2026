@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../controller/quiz_controller.dart';
+
 class QuestionsPage extends StatefulWidget {
   const QuestionsPage({super.key});
 
@@ -8,16 +10,16 @@ class QuestionsPage extends StatefulWidget {
 }
 
 class _QuestionsPageState extends State<QuestionsPage> {
-  List<String> answers = ["Egypt", "France", "Sudan"];
-  var selectedValue = "";
+  final quizController = QuizController();
+  int questionIndex = 0;
   @override
   void initState() {
-    selectedValue = answers[0];
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
+    questionIndex = quizController.questionIndex;
     return Scaffold(
       appBar: AppBar(
         title: Text("Quiz App", style: TextStyle(fontWeight: FontWeight.bold)),
@@ -28,55 +30,88 @@ class _QuestionsPageState extends State<QuestionsPage> {
         child: Column(
           crossAxisAlignment: .stretch,
           children: [
-            Text("Question (1)"),
+            Text("Question ($questionIndex)"),
             SizedBox(height: 12),
-            Text("Question Title", style: TextStyle(fontSize: 30)),
+            //Title of Question
+            Text(
+              quizController.questions[questionIndex].questionTitle,
+              style: TextStyle(fontSize: 30),
+            ),
             SizedBox(height: 12),
             Row(
               children: [
                 Expanded(
                   child: LinearProgressIndicator(
-                    value: .8,
+                    value: quizController.getProgress(),
                     minHeight: 8,
                     borderRadius: BorderRadius.circular(10),
                   ),
                 ),
                 SizedBox(width: 15),
-                Text("80 %"),
+                Text("${(quizController.getProgress() *100).toInt()} %"),
               ],
             ),
 
             SizedBox(height: 100),
+            //Answers
             Column(
               children: [
                 RadioListTile<String>(
-                  title: Text(answers[0]),
-                  value: answers[0],
-                  groupValue: selectedValue,
+                  title: Text(
+                    quizController.questions[questionIndex].answers[0],
+                  ),
+                  value: quizController.questions[questionIndex].answers[0],
+                  groupValue: quizController.selectedValue,
                   onChanged: (v) {
-                    selectedValue = v as String;
+                    quizController.selectedValue = v as String;
                     setState(() {});
                   },
                 ),
                 RadioListTile<String>(
-                  title: Text(answers[1]),
-                  value: answers[1],
-                  groupValue: selectedValue,
+                  title: Text(
+                    quizController.questions[questionIndex].answers[1],
+                  ),
+                  value: quizController.questions[questionIndex].answers[1],
+                  groupValue: quizController.selectedValue,
                   onChanged: (v) {
-                    selectedValue = v as String;
+                    quizController.selectedValue = v as String;
                     setState(() {});
                   },
                 ),
                 RadioListTile<String>(
-                  title: Text(answers[2]),
-                  value: answers[2],
-                  groupValue: selectedValue,
+                  title: Text(
+                    quizController.questions[questionIndex].answers[2],
+                  ),
+                  value: quizController.questions[questionIndex].answers[2],
+                  groupValue: quizController.selectedValue,
                   onChanged: (v) {
-                    selectedValue = v as String;
+                    quizController.selectedValue = v as String;
                     setState(() {});
                   },
                 ),
               ],
+            ),
+            SizedBox(height: 50),
+            SizedBox(
+              height: 50,
+              width: double.infinity,
+              child: ElevatedButton(
+                onPressed: quizController.selectedValue == null
+                    ? null
+                    : () {
+                        quizController.nextQuestion();
+                        setState(() {});
+                      },
+                child: Text(
+                  "Next",
+                  style: TextStyle(
+                    fontSize: 20,
+                    color: quizController.selectedValue == null
+                        ? Colors.grey
+                        : null,
+                  ),
+                ),
+              ),
             ),
           ],
         ),
@@ -84,8 +119,6 @@ class _QuestionsPageState extends State<QuestionsPage> {
     );
   }
 }
-
-
 
 /// MVC
 /// Model - View - Controller
