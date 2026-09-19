@@ -1,7 +1,7 @@
+import 'package:depi_five/note_app/view/note_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
 
-import 'quiz_app/view/quiz_home_page.dart';
 
 
 
@@ -14,6 +14,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(home: QuizHomePage());
+    return GetMaterialApp(home: NotePage());
   }
 }
