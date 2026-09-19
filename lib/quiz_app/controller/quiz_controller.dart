@@ -1,8 +1,11 @@
 import 'package:depi_five/quiz_app/model/question_model.dart';
+import 'package:depi_five/quiz_app/view/result_page.dart';
+import 'package:get/get.dart';
 
 class QuizController {
   String? selectedValue;
   int questionIndex = 0;
+  int score = 0;
   final List<QuestionModel> questions = [
     QuestionModel(
       questionTitle: "What is the capital of Egypt?",
@@ -40,7 +43,22 @@ class QuizController {
     return (questionIndex + 1) / questions.length;
   }
 
+  void checkAnswer() {
+    if (selectedValue == questions[questionIndex].correctAnswer) {
+      score++;
+    }
+  }
+
   void nextQuestion() {
-    questionIndex++;
+    checkAnswer();
+    if (questionIndex < questions.length - 1) {
+      questionIndex++;
+    } else {
+      Get.offAll(ResultPage(score: score));
+    }
+  }
+
+  void previousQuestion() {
+    questionIndex--;
   }
 }

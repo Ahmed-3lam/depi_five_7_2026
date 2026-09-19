@@ -30,8 +30,7 @@ class _QuestionsPageState extends State<QuestionsPage> {
         child: Column(
           crossAxisAlignment: .stretch,
           children: [
-            Text("Question ($questionIndex)"),
-            SizedBox(height: 12),
+            Text("Question (${questionIndex + 1})"),
             //Title of Question
             Text(
               quizController.questions[questionIndex].questionTitle,
@@ -48,7 +47,8 @@ class _QuestionsPageState extends State<QuestionsPage> {
                   ),
                 ),
                 SizedBox(width: 15),
-                Text("${(quizController.getProgress() *100).toInt()} %"),
+                SizedBox(height: 12),
+                Text("${(quizController.getProgress() * 100).toInt()} %"),
               ],
             ),
 
@@ -100,6 +100,7 @@ class _QuestionsPageState extends State<QuestionsPage> {
                     ? null
                     : () {
                         quizController.nextQuestion();
+                        quizController.selectedValue = null;
                         setState(() {});
                       },
                 child: Text(

@@ -8,3 +8,7 @@ class QuestionModel {
     required this.correctAnswer,
   });
 }
+
+// MVC (MODEL VIEW CONTROLLER)
+// MVVM (MODEL VIEW - VIEW MODEL)
+// CLEAN ARCHITECTURE 
