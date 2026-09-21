@@ -17,11 +17,12 @@ class ResultPage extends StatefulWidget {
 
 class _ResultPageState extends State<ResultPage> {
 double get bmiResult {
-    if (widget.height == 0) return 0.0;
-    double heightInMeters = widget.height / 100.0;
-    return widget.weight / (heightInMeters * heightInMeters);
+    return 88 ;
   }
     
+    void getBmi(){
+
+    }
   @override
   void initState() {
     super.initState();
