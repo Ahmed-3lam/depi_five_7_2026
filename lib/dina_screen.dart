@@ -16,11 +16,31 @@ class ResultPage extends StatefulWidget {
 }
 
 class _ResultPageState extends State<ResultPage> {
-double get bmiResult {
-    if (widget.height == 0) return 0.0;
-    double heightInMeters = widget.height / 100.0;
-    return widget.weight / (heightInMeters * heightInMeters);
-  }
+ SizedBox(
+                width: double.infinity,
+                height: 55,
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color.fromARGB(255, 202, 128, 148),
+                    foregroundColor: Colors.black,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                  ),
+                  onPressed: () {
+                    Get.to(() => ResultPage(
+                      weight: weight,
+                      height: selectedHeight,));
+                  },
+                  child: const Text(
+                    "Calculate my BMI",
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ),
     
   @override
   void initState() {
