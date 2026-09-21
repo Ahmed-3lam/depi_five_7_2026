@@ -115,6 +115,31 @@ double get bmiResult {
                 ],
               ),
             ),
+             SizedBox(
+                width: double.infinity,
+                height: 55,
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color.fromARGB(255, 202, 128, 148),
+                    foregroundColor: Colors.black,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                  ),
+                  onPressed: () {
+                    Get.to(() => ResultPage(
+                      weight: weight,
+                      height: selectedHeight,));
+                  },
+                  child: const Text(
+                    "Calculate my BMI",
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ),
             const SizedBox(height: 20),
 
             const Text(
