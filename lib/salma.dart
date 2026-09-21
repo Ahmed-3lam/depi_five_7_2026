@@ -10,6 +10,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(home: NotePage());
 
 
+
   }
 
 }
