@@ -1,3 +1,4 @@
+import 'package:depi_five/features/home/view/result_page/result.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -16,5 +17,22 @@ class _HomePageState extends State<HomePage> {
         title: Text("AppBar"),
       ),
     );
+body: Center(
+        child: ElevatedButton(
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => ResultScreen(score: 7, total: 10),
+              ),
+            );
+          },
+          child: Text("Show Result"),
+        ),
+      ),
+
+    );
+
+
   }
 }
