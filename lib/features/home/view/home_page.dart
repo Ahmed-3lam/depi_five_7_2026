@@ -10,6 +10,11 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Scaffold(
+      appBar: AppBar(
+        leading:Icon(Icons.menu),
+        title: Text("AppBar"),
+      ),
+    );
   }
 }
