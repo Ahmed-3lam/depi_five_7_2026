@@ -12,27 +12,27 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading:Icon(Icons.menu),
-        title: Text("AppBar"),
-      ),
-    );
-body: Center(
-        child: ElevatedButton(
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => ResultScreen(score: 7, total: 10),
-              ),
-            );
-          },
-          child: Text("Show Result"),
+      appBar: AppBar(leading: Icon(Icons.menu), title: Text("AppBar")),
+      body: Center(
+        child: Column(
+          children: [
+            SizedBox(),
+            ElevatedButton(
+              onPressed: () {
+            
+                
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => ResultScreen(score: 7, total: 10),
+                  ),
+                );
+              },
+              child: Text("Show Result"),
+            ),
+          ],
         ),
       ),
-
     );
-
-
   }
 }
