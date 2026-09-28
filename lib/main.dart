@@ -1,11 +1,18 @@
 import 'package:depi_five/note_app/view/note_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
+import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
+void main() async {
+  await Hive.initFlutter();
+  await Hive.openBox("Box1");
 
+  /// Put
+  // Hive.box("Box1").put("key1", "Ahmed");
+  print(Hive.box("Box1").get("key1"));
 
-
-void main() {
+  /// Get
   runApp(const MyApp());
 }
 
