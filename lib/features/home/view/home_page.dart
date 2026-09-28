@@ -16,7 +16,7 @@ class _HomePageState extends State<HomePage> {
       body: Center(
         child: Column(
           children: [
-            SizedBox(),
+            SizedBox(height: 10,),
             ElevatedButton(
               onPressed: () {
             
