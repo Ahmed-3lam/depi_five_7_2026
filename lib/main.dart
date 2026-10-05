@@ -1,9 +1,13 @@
 import 'package:depi_five/core/helpers/hive_helper.dart';
+import 'package:depi_five/counter_app/cubit/cubit/counter_cubit.dart';
 import 'package:depi_five/note_app/view/note_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/route_manager.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+
+import 'counter_app/view/counter_screen.dart';
 
 void main() async {
   await Hive.initFlutter();
@@ -23,6 +27,11 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(home: NotePage());
+    return GetMaterialApp(
+      home: BlocProvider(
+        create: (context) => CounterCubit(),
+        child: CounterScreen(),
+      ),
+    );
   }
 }
