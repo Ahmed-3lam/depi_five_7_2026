@@ -1,29 +1,15 @@
 import 'package:depi_five/core/helpers/hive_helper.dart';
+import 'package:depi_five/note_app/cubit/cubit/note_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-class NotePage extends StatefulWidget {
-  const NotePage({super.key});
-
-  @override
-  State<NotePage> createState() => _NotePageState();
-}
-
-class _NotePageState extends State<NotePage> {
+class NotePage extends StatelessWidget {
   final _controller = TextEditingController();
   final _key = GlobalKey<FormState>();
-  bool _isLoading = false;
-
-  @override
-  void didChangeDependencies() async {
-    _isLoading = true;
-    await HiveHelper.getNotes();
-    _isLoading = false;
-    setState(() {});
-    super.didChangeDependencies();
-  }
 
   @override
   Widget build(BuildContext context) {
+    final cubit = context.read<NoteCubit>();
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: () {
@@ -57,11 +43,10 @@ class _NotePageState extends State<NotePage> {
                       onPressed: () {
                         _key.currentState!.validate();
                         if (_controller.text.isNotEmpty) {
-                          HiveHelper.addNote(_controller.text);
-                          setState(() {
-                            Navigator.pop(context);
-                            _controller.text = "";
-                          });
+                          cubit.addNote(_controller.text);
+                          Navigator.pop(context);
+                          _controller.text = "";
+                          // });
                         }
                       },
                     ),
@@ -83,17 +68,21 @@ class _NotePageState extends State<NotePage> {
             padding: const EdgeInsets.all(8.0),
             child: TextButton(
               onPressed: () {
-                HiveHelper.deleteAllNotes();
-                setState(() {});
+                cubit.clearAllNotes();
               },
               child: Text("Clear All", style: TextStyle(color: Colors.white)),
             ),
           ),
         ],
       ),
-      body: _isLoading
-          ? Center(child: CircularProgressIndicator())
-          : ListView.builder(
+      body: BlocBuilder<NoteCubit, NoteState>(
+        builder: (context, state) {
+          if (state is NoteLoadingState) {
+            return Center(child: CircularProgressIndicator());
+          } else if (state is NoteEmptyState) {
+            return Center(child: Text("There' no Notes"));
+          } else {
+            return ListView.builder(
               itemCount: HiveHelper.myNotes.length,
               itemBuilder: (context, index) => Stack(
                 children: [
@@ -131,14 +120,10 @@ class _NotePageState extends State<NotePage> {
                                   onPressed: () {
                                     _key.currentState!.validate();
                                     if (_controller.text.isNotEmpty) {
-                                      HiveHelper.updateNote(
-                                        index,
-                                        _controller.text,
-                                      );
-                                      setState(() {
-                                        Navigator.pop(context);
-                                        _controller.text = "";
-                                      });
+                                      cubit.updateNote(index, _controller.text);
+
+                                      Navigator.pop(context);
+                                      _controller.text = "";
                                     }
                                   },
                                 ),
@@ -167,15 +152,17 @@ class _NotePageState extends State<NotePage> {
                     padding: const EdgeInsets.all(8.0),
                     child: IconButton(
                       onPressed: () {
-                        HiveHelper.deleteNote(index);
-                        setState(() {});
+                        cubit.deleteNote(index);
                       },
                       icon: Icon(Icons.delete, color: Colors.red),
                     ),
                   ),
                 ],
               ),
-            ),
+            );
+          }
+        },
+      ),
     );
   }
 }

@@ -7,7 +7,7 @@ class HiveHelper {
 
   static Future<void> getNotes() async {
     await Future.delayed(Duration(seconds: 1));
-    myNotes = await Hive.box(noteBox).get(noteKey);
+    myNotes = await Hive.box(noteBox).get(noteKey)??[];
   }
 
   static void addNote(String note) async {
