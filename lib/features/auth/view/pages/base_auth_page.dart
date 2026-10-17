@@ -3,7 +3,9 @@ import 'dart:async';
 import 'package:depi_five/core/const/colors.dart' show MyColors;
 import 'package:depi_five/core/const/image_paths.dart';
 import 'package:depi_five/core/widgets/primary_btn.dart';
+import 'package:depi_five/features/auth/view/pages/login_page.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class BaseAuthPage extends StatefulWidget {
   const BaseAuthPage({super.key});
@@ -68,7 +70,12 @@ class _BaseAuthPageState extends State<BaseAuthPage> {
                   ),
                 ),
                 Spacer(),
-                PrimaryBtn.greenBtn("Continue with Email or Phone"),
+                PrimaryBtn.greenBtn(
+                  "Continue with Email or Phone",
+                  onTap: () {
+                    Get.to(LoginPage());
+                  },
+                ),
                 SizedBox(height: 20),
                 PrimaryBtn.whiteBtn("Create an account"),
               ],

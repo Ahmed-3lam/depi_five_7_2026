@@ -1,4 +1,5 @@
-import 'package:depi_five/features/auth/view/base_auth_page.dart';
+import 'package:depi_five/core/helpers/hive_helper.dart';
+import 'package:depi_five/features/auth/view/pages/base_auth_page.dart';
 import 'package:depi_five/features/onboarding/onboarding_const.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -45,6 +46,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
                   count++;
                   setState(() {});
                 } else {
+                  HiveHelper.saveOnboardingEntry();
                   Get.offAll(BaseAuthPage());
                 }
               },

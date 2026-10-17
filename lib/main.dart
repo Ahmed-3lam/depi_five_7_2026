@@ -1,4 +1,5 @@
 
+import 'package:depi_five/core/helpers/hive_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
 
@@ -9,7 +10,7 @@ import 'features/splash/splash_page.dart';
 
 void main() async {
   await Hive.initFlutter();
-  // await Hive.openBox("Box1");
+  await Hive.openBox(HiveHelper.onBoardingBox);
   runApp(const MyApp());
 }
 

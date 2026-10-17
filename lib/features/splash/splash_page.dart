@@ -1,4 +1,6 @@
 import 'dart:async';
+import 'package:depi_five/core/helpers/hive_helper.dart';
+import 'package:depi_five/features/auth/view/pages/base_auth_page.dart';
 import 'package:depi_five/features/onboarding/onboarding_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -36,7 +38,11 @@ class _SplashPageState extends State<SplashPage> {
       counter--;
       if (counter == 0) {
         timer.cancel();
-        Get.offAll(OnboardingPage());
+        if (HiveHelper.isOnboardingSeen()) {
+          Get.offAll(BaseAuthPage());
+        } else {
+          Get.offAll(OnboardingPage());
+        }
       }
     });
   }
