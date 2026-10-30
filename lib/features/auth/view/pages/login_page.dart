@@ -1,15 +1,20 @@
 import 'package:depi_five/core/const/image_paths.dart';
 import 'package:depi_five/core/widgets/primary_btn.dart';
+import 'package:depi_five/features/auth/cubit/cubit/auth_cubit.dart';
 import 'package:depi_five/features/auth/view/widgets/custom_textfield.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class LoginPage extends StatelessWidget {
-  const LoginPage({super.key});
+   LoginPage({super.key});
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
 
   ///Responsive Design
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.sizeOf(context).height;
+
     return Scaffold(
       body: Padding(
         padding: EdgeInsets.only(top: height * .1, left: 24, right: 24),
@@ -22,15 +27,35 @@ class LoginPage extends StatelessWidget {
                 width: 120,
               ),
               SizedBox(height: height * .1),
-              CustomTextfield(text: "Phone Number"),
+              CustomTextfield(text: "Email", controller: _emailController),
               SizedBox(height: height * .03),
-              CustomTextfield(text: "Password", isPassword: true),
+              CustomTextfield(
+                text: "Password",
+                isPassword: true,
+                controller: _passwordController,
+              ),
               Row(
                 mainAxisAlignment: .end,
                 children: [Text("Forget Password?")],
               ),
               SizedBox(height: height * .03),
-              PrimaryBtn.greenBtn("Login"),
+              BlocBuilder<AuthCubit, AuthState>(
+                builder: (context, state) {
+                  final cubit = context.read<AuthCubit>();
+                  if (state is AuthLoading) {
+                    return Center(child: CircularProgressIndicator());
+                  }
+                  return PrimaryBtn.greenBtn(
+                    "Login",
+                    onTap: () {
+                      cubit.login(
+                        _emailController.text,
+                        _passwordController.text,
+                      );
+                    },
+                  );
+                },
+              ),
               SizedBox(height: height * .03),
               Row(
                 spacing: 14,

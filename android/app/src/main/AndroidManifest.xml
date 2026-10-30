@@ -1,8 +1,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+        <!-- Add the internet permission here -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    
+    <!-- Optional but highly recommended: Allows checking if the device is connected to Wi-Fi/Cellular -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <application
         android:label="depi_five"
         android:name="${applicationName}"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/launcher_icon">
         <activity
             android:name=".MainActivity"
             android:exported="true"
