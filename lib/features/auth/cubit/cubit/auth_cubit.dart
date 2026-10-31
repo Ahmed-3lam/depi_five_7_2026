@@ -13,6 +13,7 @@ part 'auth_state.dart';
 
 class AuthCubit extends Cubit<AuthState> {
   AuthCubit() : super(AuthInitial());
+  
   LoginModel loginModel = LoginModel();
   
   void login(String email, String pass) async {

@@ -1,7 +1,8 @@
 import 'package:depi_five/config/bloc_observer.dart';
 import 'package:depi_five/core/helpers/hive_helper.dart';
 import 'package:depi_five/features/auth/cubit/cubit/auth_cubit.dart';
-
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/route_manager.dart';
@@ -19,6 +20,9 @@ Bloc.observer = AppBlocObserver();
   await Hive.openBox(HiveHelper.onBoardingBox);
   await Hive.openBox(HiveHelper.tokenBox);
   NetworkHelper.initializeDio();
+await Firebase.initializeApp(
+  options: DefaultFirebaseOptions.currentPlatform,
+);
   runApp(const MyApp());
 }
 
