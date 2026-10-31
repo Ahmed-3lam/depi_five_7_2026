@@ -48,7 +48,7 @@ class LoginPage extends StatelessWidget {
                   return PrimaryBtn.greenBtn(
                     "Login",
                     onTap: () {
-                      cubit.login(
+                      cubit.loginWithFirebase(
                         _emailController.text,
                         _passwordController.text,
                       );

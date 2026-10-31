@@ -5,7 +5,7 @@ import 'package:depi_five/core/helpers/network/network_helper.dart';
 import 'package:depi_five/features/auth/model/login_model.dart';
 import 'package:depi_five/features/home/view/home_page.dart';
 
-import 'package:dio/dio.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -13,9 +13,30 @@ part 'auth_state.dart';
 
 class AuthCubit extends Cubit<AuthState> {
   AuthCubit() : super(AuthInitial());
-  
+
   LoginModel loginModel = LoginModel();
-  
+
+  /// Signs in with Firebase; navigation can be handled by the caller.
+  Future<void> loginWithFirebase(String email, String password) async {
+    emit(AuthLoading());
+    try {
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: email.trim(),
+        password: password,
+      );
+      if (isClosed) return;
+      emit(AuthSuccess());
+    } on FirebaseAuthException catch (e) {
+      if (isClosed) return;
+      emit(
+        AuthError(message: e.message ?? 'Unable to sign in. Please try again.'),
+      );
+    } catch (_) {
+      if (isClosed) return;
+      emit(AuthError(message: 'Unable to sign in. Please try again.'));
+    }
+  }
+
   void login(String email, String pass) async {
     emit(AuthLoading());
     try {
