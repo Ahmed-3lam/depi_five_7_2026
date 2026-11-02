@@ -184,7 +184,7 @@ class HomePage extends StatelessWidget {
                                   backgroundColor: Colors.green,
 
                                   onPressed: () {
-                                    // Handle add to cart button press
+                                    throw Exception("Add to cart functionality not implemented yet.");
                                   },
                                   child: Icon(Icons.add, color: Colors.white),
                                 ),
