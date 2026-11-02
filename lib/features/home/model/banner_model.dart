@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class BannerModel {
   int? statusCode;
   List<BannerData>? data;
@@ -10,15 +12,15 @@ class BannerModel {
     if (json['data'] != null) {
       data = <BannerData>[];
       json['data'].forEach((v) {
-        data!.add( BannerData.fromJson(v));
+        data!.add(BannerData.fromJson(v));
       });
     }
     message = json['message'];
   }
-
 }
 
 class BannerData {
+  String? documentId;
   int? id;
   String? title;
   String? description;
@@ -31,18 +33,19 @@ class BannerData {
   String? endDate;
   String? createdAt;
 
-  BannerData(
-      {this.id,
-      this.title,
-      this.description,
-      this.image,
-      this.link,
-      this.isActive,
-      this.position,
-      this.priority,
-      this.startDate,
-      this.endDate,
-      this.createdAt});
+  BannerData({
+    this.id,
+    this.title,
+    this.description,
+    this.image,
+    this.link,
+    this.isActive,
+    this.position,
+    this.priority,
+    this.startDate,
+    this.endDate,
+    this.createdAt,
+  });
 
   BannerData.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -58,5 +61,17 @@ class BannerData {
     createdAt = json['createdAt'];
   }
 
- 
+  factory BannerData.fromFirestore(
+    String documentId,
+    Map<String, dynamic> data,
+  ) {
+    final json = Map<String, dynamic>.from(data);
+    for (final key in ['startDate', 'endDate', 'createdAt']) {
+      final value = json[key];
+      if (value is Timestamp) {
+        json[key] = value.toDate().toUtc().toIso8601String();
+      }
+    }
+    return BannerData.fromJson(json)..documentId = documentId;
+  }
 }

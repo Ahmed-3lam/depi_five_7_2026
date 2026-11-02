@@ -8,13 +8,11 @@ final class HomeInitial extends HomeState {}
 final class HomeBannersLoadingState extends HomeState {}
 
 final class HomeBannersSuccessState extends HomeState {
-BannerModel bannerModel;
+  final BannerModel bannerModel;
   HomeBannersSuccessState({required this.bannerModel});
 }
 
 final class HomeBannersErrorState extends HomeState {}
-
-
 
 final class HomeProductsLoadingState extends HomeState {}
 

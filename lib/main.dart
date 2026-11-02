@@ -52,8 +52,8 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => AuthCubit()),
         BlocProvider(
           create: (context) => HomeCubit()
-            ..fetchBanners()
-            ..fetchProducts(),
+            ..fetchBannersFromFirestore()
+            ..fetchProductsFromFirestore(),
         ),
       ],
       child: GetMaterialApp(home: SplashPage()),

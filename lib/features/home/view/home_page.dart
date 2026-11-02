@@ -20,6 +20,10 @@ class HomePage extends StatelessWidget {
           spacing: 16.0,
           children: [
             BlocConsumer<HomeCubit, HomeState>(
+              buildWhen: (previous, current) =>
+                  current is HomeBannersLoadingState ||
+                  current is HomeBannersSuccessState ||
+                  current is HomeBannersErrorState,
               listener: (context, state) {
                 if (state is HomeBannersErrorState) {
                   ScaffoldMessenger.of(context).showSnackBar(
@@ -43,17 +47,28 @@ class HomePage extends StatelessWidget {
                     ),
                   );
                 }
-               
+                if (state is HomeBannersErrorState) {
+                  return TextButton(
+                    onPressed: cubit.fetchBannersFromFirestore,
+                    child: const Text('Retry loading banners'),
+                  );
+                }
+                final banners = cubit.bannerModel.data ?? [];
+                if (banners.isEmpty) return const SizedBox.shrink();
+
                 return CarouselSlider(
                   items: [
-                    for (var banner in cubit.bannerModel.data ?? [])
+                    for (final banner in banners)
                       Container(
                         margin: EdgeInsets.all(5.0),
-                        decoration: BoxDecoration(
+                        child: ClipRRect(
                           borderRadius: BorderRadius.circular(10.0),
-                          image: DecorationImage(
-                            image: NetworkImage(banner.image ?? ''),
+                          child: Image.network(
+                            banner.image!,
+                            width: double.infinity,
                             fit: BoxFit.fill,
+                            errorBuilder: (context, error, stackTrace) =>
+                                const Center(child: Icon(Icons.broken_image)),
                           ),
                         ),
                       ),
@@ -63,7 +78,7 @@ class HomePage extends StatelessWidget {
                     aspectRatio: 16 / 9,
                     viewportFraction: 1,
                     initialPage: 0,
-                    enableInfiniteScroll: true,
+                    enableInfiniteScroll: banners.length > 1,
                     autoPlayInterval: Duration(seconds: 3),
                     autoPlayAnimationDuration: Duration(milliseconds: 800),
                     autoPlayCurve: Curves.fastOutSlowIn,
@@ -93,6 +108,10 @@ class HomePage extends StatelessWidget {
               ],
             ),
             BlocConsumer<HomeCubit, HomeState>(
+              buildWhen: (previous, current) =>
+                  current is HomeProductsLoadingState ||
+                  current is HomeProductsSuccessState ||
+                  current is HomeProductsErrorState,
               listener: (context, state) {
                 if (state is HomeProductsErrorState) {
                   ScaffoldMessenger.of(context).showSnackBar(
@@ -110,6 +129,15 @@ class HomePage extends StatelessWidget {
                       size: 50.0,
                     ),
                   );
+                }
+                if (state is HomeProductsErrorState) {
+                  return TextButton(
+                    onPressed: cubit.fetchProductsFromFirestore,
+                    child: const Text('Retry loading products'),
+                  );
+                }
+                if (products?.isEmpty ?? true) {
+                  return const Text('No products available');
                 }
                 return SizedBox(
                   height: 240,
@@ -139,6 +167,12 @@ class HomePage extends StatelessWidget {
                                       '', // Replace with your image URL
                                   height: 100,
                                   width: 100,
+                                  errorBuilder: (context, error, stackTrace) =>
+                                      const SizedBox(
+                                        height: 100,
+                                        width: 100,
+                                        child: Icon(Icons.broken_image),
+                                      ),
                                 ),
                               ),
                             ),
@@ -146,6 +180,8 @@ class HomePage extends StatelessWidget {
                             Text(
                               products?[index].name ??
                                   "", // Replace with your item title
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
                               style: TextStyle(
                                 fontSize: 16,
                                 fontWeight: FontWeight.bold,
@@ -156,6 +192,7 @@ class HomePage extends StatelessWidget {
                               child: Text(
                                 products?[index].description ??
                                     '', // Replace with your item description
+                                maxLines: 1,
                                 style: TextStyle(
                                   overflow: TextOverflow.ellipsis,
                                   fontSize: 14,
@@ -184,7 +221,9 @@ class HomePage extends StatelessWidget {
                                   backgroundColor: Colors.green,
 
                                   onPressed: () {
-                                    throw Exception("Add to cart functionality not implemented yet.");
+                                    throw Exception(
+                                      "Add to cart functionality not implemented yet.",
+                                    );
                                   },
                                   child: Icon(Icons.add, color: Colors.white),
                                 ),
