@@ -6,7 +6,7 @@
     <!-- Optional but highly recommended: Allows checking if the device is connected to Wi-Fi/Cellular -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <application
-        android:label="depi_five"
+        android:label="Depi Five"
         android:name="${applicationName}"
         android:icon="@mipmap/launcher_icon">
         <meta-data

@@ -1,4 +1,4 @@
-package com.example.depi_five
+package com.ahmedallam.depifive
 
 import io.flutter.embedding.android.FlutterActivity
 

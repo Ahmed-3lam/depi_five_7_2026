@@ -7,12 +7,17 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1077934310320:android:39378ea9dd5789a69e4c75",
+        "mobilesdk_app_id": "1:1077934310320:android:b23549511bd9b0fc9e4c75",
         "android_client_info": {
-          "package_name": "com.example.depi_five"
+          "package_name": "com.ahmedallam.depifive"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "1077934310320-a6mvdhb3smoprsq8usf1pm7fgs6agv9o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyALZ9Jp8CbPhweD-10A0ttfCakuZy1r10Q"
@@ -20,7 +25,55 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1077934310320-a6mvdhb3smoprsq8usf1pm7fgs6agv9o.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1077934310320-eike08vshdl96p82emvq5aui7mrhcsrt.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.depiFive"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1077934310320:android:39378ea9dd5789a69e4c75",
+        "android_client_info": {
+          "package_name": "com.example.depi_five"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1077934310320-a6mvdhb3smoprsq8usf1pm7fgs6agv9o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyALZ9Jp8CbPhweD-10A0ttfCakuZy1r10Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1077934310320-a6mvdhb3smoprsq8usf1pm7fgs6agv9o.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1077934310320-eike08vshdl96p82emvq5aui7mrhcsrt.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.depiFive"
+              }
+            }
+          ]
         }
       }
     }
