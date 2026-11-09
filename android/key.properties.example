@@ -1,0 +1,6 @@
+# Copy to key.properties and restore your private key and passwords.
+# storeFile is relative to the android directory.
+storePassword=REPLACE_WITH_YOUR_STORE_PASSWORD
+keyPassword=REPLACE_WITH_YOUR_KEY_PASSWORD
+keyAlias=upload
+storeFile=../upload-keystore.jks
