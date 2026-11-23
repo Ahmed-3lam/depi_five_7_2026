@@ -3,6 +3,7 @@ import 'dart:ui';
 
 import 'package:depi_five/config/bloc_observer.dart';
 import 'package:depi_five/core/helpers/hive_helper.dart';
+import 'package:depi_five/counter_screen.dart';
 import 'package:depi_five/features/auth/cubit/cubit/auth_cubit.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
@@ -47,16 +48,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider(create: (context) => AuthCubit()),
-        BlocProvider(
-          create: (context) => HomeCubit()
-            ..fetchBannersFromFirestore()
-            ..fetchProductsFromFirestore(),
-        ),
-      ],
-      child: GetMaterialApp(home: SplashPage()),
-    );
+    return MaterialApp(home:CounterScreen(),);
   }
 }
